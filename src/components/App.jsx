@@ -9,11 +9,27 @@ export default function App() {
   });
   const balance = transactions.reduce((total, transaction) => {
     if (transaction.type === "income") {
-      return total + parseFloat(transaction.amount);
+      return total + transaction.amount;
     } else {
-      return total - parseFloat(transaction.amount);
+      return total - transaction.amount;
     }
   }, 0);
+  const incomeArr = transactions
+    .filter((transaction) => transaction.type === "income")
+    .map((transaction) => transaction.amount);
+  const income =
+    incomeArr.length > 0
+      ? incomeArr.reduce((total, transaction) => total + transaction)
+      : 0;
+
+  const expenseArr = transactions
+    .filter((transaction) => transaction.type === "expense")
+    .map((transaction) => transaction.amount);
+
+  const expense =
+    expenseArr.length > 0
+      ? expenseArr.reduce((total, transaction) => total + transaction)
+      : 0;
 
   const handleUpdateTransactions = (updatedTransactions) => {
     setTransactions(updatedTransactions);
@@ -23,30 +39,31 @@ export default function App() {
     <>
       <header>
         <h1 className="text-center mt-5">Personal Finance Management</h1>
-        <nav className="mt-4 mb-4">
-          <ul className="nav nav-tabs">
-            <li className="nav-item">
-              <a className="nav-link active" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Statistics
-              </a>
-            </li>
-          </ul>
-        </nav>
       </header>
       <main>
         <section id="home">
-          <h2 className="text-center mb-4">Home</h2>
           <div className="card mb-4">
             <div className="card-header">
               <h3 className="card-title">Current Balance:</h3>
             </div>
             <div className="card-body">
               <h2 className="card-text text-center">${balance}</h2>
+            </div>
+          </div>
+          <div className="card mb-4">
+            <div className="card-header">
+              <h3 className="card-title">Total income:</h3>
+            </div>
+            <div className="card-body">
+              <h2 className="card-text text-center">${income}</h2>
+            </div>
+          </div>
+          <div className="card mb-4">
+            <div className="card-header">
+              <h3 className="card-title">Total expenses:</h3>
+            </div>
+            <div className="card-body">
+              <h2 className="card-text text-center">-${expense}</h2>
             </div>
           </div>
           <div className="card mb-4">

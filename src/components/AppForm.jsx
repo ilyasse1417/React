@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const AppForm = ({ onUpdateTransactions }) => {
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
@@ -10,7 +10,7 @@ const AppForm = ({ onUpdateTransactions }) => {
     e.preventDefault();
     const currentDate = new Date().toLocaleDateString("en-GB");
     let transaction = {
-      amount: amount,
+      amount: +amount,
       description: description,
       category: category,
       type: type,

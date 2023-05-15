@@ -12,3 +12,8 @@ select {
     background-color: #e5ffe5;
     /* light green */
 }
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
