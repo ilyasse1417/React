@@ -1,0 +1,14 @@
+input,
+select {
+    margin-bottom: 20px;
+}
+
+.expense {
+    background-color: #ffebeb;
+    /* light red */
+}
+
+.income {
+    background-color: #e5ffe5;
+    /* light green */
+}
